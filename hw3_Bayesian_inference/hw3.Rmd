@@ -1,0 +1,40 @@
+### 3.1
+```{r}
+df = read.csv('https://raw.githubusercontent.com/agricolamz/2019_data_analysis_for_linguists/master/data/students/lenasavinova/hw3_Bayesian_inference/hw3_phoible.csv')
+
+prod(dnorm(df$consonants, mean = 22, sd = 6))
+```
+
+### 3.2
+```{r}
+let = read.csv('https://raw.githubusercontent.com/agricolamz/2019_data_analysis_for_linguists/master/data/letter_frequency.csv')
+
+most = function(x) {prod(x[13], x[15], x[19], x[20])}
+model = names(letters)[-14]
+prior = 1/13
+likelihood = c(most(let$French), 
+                          most(let$German), 
+                          most(let$Spanish), 
+                          most(let$Portuguese),
+                          most(let$Esperanto),
+                          most(let$Italian),
+                          most(let$Turkish),
+                          most(let$Swedish),
+                          most(let$Polish), 
+                          most(let$Dutch), 
+                          most(let$Danish),
+                          most(let$Icelandic),
+                          most(let$Finnish))
+product = prior*likelihood
+posterior = product/sum(product)
+mostdf = data.frame(model, prior, likelihood, product, posterior)
+max(mostdf$posterior)
+
+```
+
+### 3.3
+```{r}
+bin = read.csv('https://raw.githubusercontent.com/agricolamz/2019_data_analysis_for_linguists/master/data/students/lenasavinova/hw3_Bayesian_inference/hw3_task_3.csv')
+(bin$a + 33)/(bin$b + 110 + bin$a)
+
+```
