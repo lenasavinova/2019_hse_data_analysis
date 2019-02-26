@@ -10,7 +10,7 @@ prod(dnorm(df$consonants, mean = 22, sd = 6))
 let = read.csv('https://raw.githubusercontent.com/agricolamz/2019_data_analysis_for_linguists/master/data/letter_frequency.csv')
 
 most = function(x) {prod(x[13], x[15], x[19], x[20])}
-model = names(letters)[-14]
+model = names(let)[-14]
 prior = 1/13
 likelihood = c(most(let$French), 
                           most(let$German), 
